@@ -1,0 +1,40 @@
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - POSTGRES_URL=jdbc:postgresql://db:5432/testdb
+      - POSTGRES_USER=testdb
+      - POSTGRES_PASSWORD=testdb
+    networks:
+      - imobiliaria-network
+
+  db:
+    image: postgres:18
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgresql
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=testdb
+      - POSTGRES_PASSWORD=testdb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "testdb", "-d", "testdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - imobiliaria-network
+
+volumes:
+  db-data:
+
+networks:
+  imobiliaria-network:
