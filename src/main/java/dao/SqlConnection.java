@@ -8,11 +8,9 @@ public class SqlConnection {
 
 	private static SqlConnection sqlConnection;
 	private Connection connection;
-	// private static final String urlConexao =
-	// "jdbc:sqlite:/Users/wesleyestevao/meu_banco.db";
-	private static final String urlConexao = "jdbc:postgresql://db:5432/testdb";
-	private static final String usuario = "testdb";
-	private static final String senha = "testdb";
+	private static final String urlConexao = System.getenv("POSTGRES_URL");
+	private static final String usuario = System.getenv("POSTGRES_USER"); 
+	private static final String senha = System.getenv("POSTGRES_PASSWORD"); 
 
 	private SqlConnection() throws ClassNotFoundException {
 		try {
