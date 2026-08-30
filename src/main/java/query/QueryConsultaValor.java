@@ -10,7 +10,7 @@ public class QueryConsultaValor implements MontarQueryImovelComFiltros {
 	@Override
 	public String queryConsulta(ImovelDTO imovelDto) {
 		if (imovelDto.getValor() != null) {
-			return " AND valor <= ?";
+			return " AND valor <= ?::NUMERIC";
 		}
 		return "";
 	}
