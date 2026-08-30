@@ -14,9 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import Exception.ImovelException;
 import bo.ImovelBOImpl;
 import dto.ImovelDTO;
+import exception.ImovelException;
 import interfaces.ImovelDao;
 
 public class ImovelBOTest {

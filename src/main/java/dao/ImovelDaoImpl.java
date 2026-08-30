@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Util.SqlUtil;
 import dto.ImovelDTO;
 import interfaces.ImovelDao;
 import interfaces.MontarParametrosImovelComFiltros;
@@ -14,6 +13,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;
 import jakarta.inject.Inject;
 import model.Imovel;
+import util.SqlUtil;
 
 @ApplicationScoped
 public class ImovelDaoImpl implements ImovelDao {

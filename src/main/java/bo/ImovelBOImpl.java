@@ -3,8 +3,8 @@ package bo;
 import java.sql.SQLException;
 import java.util.List;
 
-import Exception.ImovelException;
 import dto.ImovelDTO;
+import exception.ImovelException;
 import interfaces.ImovelBO;
 import interfaces.ImovelDao;
 import interfaces.ValidadorFiltroImovel;

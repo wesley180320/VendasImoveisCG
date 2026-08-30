@@ -3,8 +3,8 @@ package interfaces;
 import java.sql.SQLException;
 import java.util.List;
 
-import Exception.ImovelException;
 import dto.ImovelDTO;
+import exception.ImovelException;
 
 public interface ImovelBO {
 
