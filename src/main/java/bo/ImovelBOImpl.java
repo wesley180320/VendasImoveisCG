@@ -16,8 +16,8 @@ import jakarta.inject.Inject;
 public class ImovelBOImpl implements ImovelBO {
 
 	@Inject
-    private ImovelDao imovelDao;
-	
+	private ImovelDao imovelDao;
+
 	@Inject
 	private Instance<ValidadorFiltroImovel> validadores;
 
@@ -59,12 +59,12 @@ public class ImovelBOImpl implements ImovelBO {
 	}
 
 	@Override
-	public Boolean validarImovelComFiltro(ImovelDTO imovelDTO) {
+	public List<ImovelDTO> validarImovelComFiltro(ImovelDTO imovelDTO) throws ImovelException, SQLException {
 		for (ValidadorFiltroImovel validador : validadores) {
 			if (validador.validar(imovelDTO)) {
-				return true;
+				return buscarImoveisPorParamentros(imovelDTO);
 			}
 		}
-		return false;
+		return buscarImoveis(imovelDTO);
 	}
 }

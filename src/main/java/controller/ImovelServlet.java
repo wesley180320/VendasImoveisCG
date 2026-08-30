@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.util.List;
 
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -19,7 +18,7 @@ import interfaces.ImovelBO;
 public class ImovelServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private ImovelBO imovelBO;
 
@@ -35,15 +34,8 @@ public class ImovelServlet extends HttpServlet {
 		if (valorMaximo != null && !valorMaximo.isBlank()) {
 			imovelDto.setValor(new BigDecimal(valorMaximo));
 		}
-
-		List<ImovelDTO> imoveis;
 		try {
-			if (imovelBO.validarImovelComFiltro(imovelDto)) {
-				imoveis = imovelBO.buscarImoveisPorParamentros(imovelDto);
-			} else {
-				imoveis = imovelBO.buscarImoveis(imovelDto);
-			}
-			request.setAttribute("imoveis", imoveis);
+			request.setAttribute("imoveis", imovelBO.validarImovelComFiltro(imovelDto));
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		} catch (ImovelException e) {
 			request.setAttribute("erro", e.getMessage());
